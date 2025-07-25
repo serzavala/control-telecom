@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen Semanal</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body class="bg-light">
+  <div class="container py-3" id="resumenContainer">
+    <h2 class="mb-3">📊 Resumen Semanal</h2>
+
+    <div class="row g-2 mb-3">
+      <div class="col-md-3">
+        <input type="text" id="filtroSemana" class="form-control" placeholder="Semana">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Selecciona una o más cuadrillas:</label>
+        <select id="filtroCuadrilla" class="form-select" multiple size="4">
+          <option value="1">Cuadrilla 1</option>
+          <option value="2">Cuadrilla 2</option>
+          <option value="3">Cuadrilla 3</option>
+          <option value="4">Cuadrilla 4</option>
+        </select>
+        <small class="text-muted">Usa Ctrl o Shift + clic para seleccionar varias</small>
+      </div>
+      <div class="col-md-3 d-grid gap-2">
+        <button class="btn btn-primary" onclick="filtrarResumen()">Filtrar</button>
+        <button class="btn btn-success" onclick="exportarPDF()">Exportar a PDF</button>
+      </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Semana</th>
+          <th>Cuadrilla</th>
+          <th>Monto</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody id="tablaResumen"></tbody>
+    </table>
+
+    <div class="mt-3">
+      <p><strong>Total Ingresos:</strong> $<span id="totalIngresos">0.00</span></p>
+      <p><strong>Total Gastos:</strong> $<span id="totalGastos">0.00</span></p>
+      <p><strong>Total Nómina:</strong> $<span id="totalNomina">0.00</span></p>
+      <p><strong>Utilidad Neta:</strong> $<span id="utilidadNeta">0.00</span></p>
+    </div>
+
+    <hr>
+
+    <div>
+      <h5>📄 Reparto de Utilidad (solo cuadrillas 3 y 4)</h5>
+      <div class="row g-2">
+        <div class="col-md-2">
+          <input type="text" id="nombreSergio" class="form-control" placeholder="Sergio">
+        </div>
+        <div class="col-md-1">
+          <input type="number" id="pctSergio" class="form-control" value="45">
+        </div>
+        <div class="col-md-2">
+          <input type="text" id="nombreHector" class="form-control" placeholder="Héctor">
+        </div>
+        <div class="col-md-1">
+          <input type="number" id="pctHector" class="form-control" value="45">
+        </div>
+        <div class="col-md-2">
+          <input type="text" id="nombrePepe" class="form-control" placeholder="Pepe">
+        </div>
+        <div class="col-md-1">
+          <input type="number" id="pctPepe" class="form-control" value="10">
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary w-100" id="btnCalcularReparto">Calcular reparto</button>
+        </div>
+      </div>
+      <div class="mt-2">
+        <p id="labelSergio">Sergio: <span id="valSergio">$0.00</span></p>
+        <p id="labelHector">Héctor: <span id="valHector">$0.00</span></p>
+        <p id="labelPepe">Pepe: <span id="valPepe">$0.00</span></p>
+      </div>
+    </div>
+
+    <a href="../index.html" class="btn btn-secondary mt-3">⬅ Volver al Inicio</a>
+  </div>
+
+  <script src="../js/resumen.js"></script>
+</body>
+</html>
